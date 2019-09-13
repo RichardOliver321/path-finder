@@ -1,6 +1,7 @@
 public class Board {
     private int sizeX = 10;
     private int sizeY = 10;
+    private int cellSize = 20;
 
     private Node[][] boardState = new Node[sizeX][sizeY];
 
@@ -20,9 +21,9 @@ public class Board {
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
 
-               if ( j % 2 == 0) {
+               if ( i%2 == 0 || j % 2 == 0) {
                    boardState[i][j] = new Node();
-                   boardState[i][j].traversable = false;
+                   boardState[i][j].traversable = true;
                } else {
                    boardState[i][j] = new Node();
                }
@@ -48,5 +49,9 @@ public class Board {
 
     public Node getNode(int x, int y) {
         return boardState[x][y];
+    }
+
+    public int getCellSize() {
+        return cellSize;
     }
 }

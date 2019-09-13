@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class PathFinder extends Canvas {
 
-    Board boardState;
+    private Board boardState;
 
     public PathFinder(Board board) {
         boardState = board;
@@ -17,20 +17,21 @@ public class PathFinder extends Canvas {
         board.setBoardSize(10, 10);
         Canvas canvas = new PathFinder(board);
 
-        canvas.setSize(board.getSizeX() * 10, board.getSizeY() * 10);
+        canvas.setSize(board.getSizeX() * 20, board.getSizeY() * 20);
         frame.add(canvas);
         frame.pack();
         frame.setVisible(true);
-
     }
 
 
     public void paint(Graphics g) {
-        int nodeSize = 200;
-        for (int i = 0; i < boardState.getSizeX(); i++) {
-            for (int j = 0; j < boardState.getSizeY(); j++) {
-                if(boardState.getNode(i,j).traversable)
-                    g.fillRect(i, j, nodeSize, nodeSize);
+        for (int x = 0; x < boardState.getSizeX(); x++) {
+            for (int y = 0; y < boardState.getSizeY(); y++) {
+                if (boardState.getNode(x, y).traversable)
+                    g.setColor(Color.BLACK);
+                else
+                    g.setColor(Color.MAGENTA);
+                g.fillRect(x * boardState.getCellSize(), y * boardState.getCellSize(), boardState.getCellSize(), boardState.getCellSize());
             }
         }
     }
