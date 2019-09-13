@@ -7,9 +7,14 @@ public class Board {
     public void setBoardSize(int x, int y) {
         sizeX = x;
         sizeY = y;
+        initialiseBoard();
     }
 
     public void reset() {
+        initialiseBoard();
+    }
+
+    private void initialiseBoard() {
         boardState = new Node[sizeX][sizeY];
     }
 
