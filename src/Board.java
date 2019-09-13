@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public class Board {
     private int sizeX = 10;
     private int sizeY = 10;
@@ -21,7 +23,7 @@ public class Board {
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
 
-               if ( i%2 == 0 || j % 2 == 0) {
+               if ( i % 2 == 0 || j % 2 == 0) {
                    boardState[i][j] = new Node();
                    boardState[i][j].traversable = true;
                } else {
@@ -29,6 +31,13 @@ public class Board {
                }
             }
         }
+
+        //Test starting positions
+        boardState[0][0].startingPosition = true;
+        boardState[0][0].traversable = true;
+        boardState[sizeY-1][sizeX-1].endLocation = true;
+        boardState[sizeY-1][sizeX-1].traversable = true;
+
     }
 
     public void setNodeAtLocation(Node node, int x, int y) {
@@ -47,8 +56,10 @@ public class Board {
         return sizeY;
     }
 
-    public Node getNode(int x, int y) {
-        return boardState[x][y];
+    public Optional<Node> getNode(int x, int y) {
+        if(x >= getSizeX() || x < 0 || y >= getSizeY() || y < 0)
+            return Optional.empty();
+        return Optional.of(boardState[x][y]);
     }
 
     public int getCellSize() {

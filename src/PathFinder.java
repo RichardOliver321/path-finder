@@ -17,7 +17,7 @@ public class PathFinder extends Canvas {
         board.setBoardSize(10, 10);
         Canvas canvas = new PathFinder(board);
 
-        canvas.setSize(board.getSizeX() * 20, board.getSizeY() * 20);
+        canvas.setSize(board.getSizeX() * board.getCellSize(), board.getSizeY() * board.getCellSize());
         frame.add(canvas);
         frame.pack();
         frame.setVisible(true);
@@ -27,10 +27,16 @@ public class PathFinder extends Canvas {
     public void paint(Graphics g) {
         for (int x = 0; x < boardState.getSizeX(); x++) {
             for (int y = 0; y < boardState.getSizeY(); y++) {
-                if (boardState.getNode(x, y).traversable)
+                if (boardState.getNode(x, y).isPresent() && boardState.getNode(x, y).get().traversable)
                     g.setColor(Color.BLACK);
                 else
                     g.setColor(Color.MAGENTA);
+                if (boardState.getNode(x, y).isPresent() && boardState.getNode(x, y).get().startingPosition)
+                    g.setColor(Color.green);
+                if (boardState.getNode(x, y).isPresent() && boardState.getNode(x, y).get().endLocation)
+                    g.setColor(Color.red);
+
+
                 g.fillRect(x * boardState.getCellSize(), y * boardState.getCellSize(), boardState.getCellSize(), boardState.getCellSize());
             }
         }
