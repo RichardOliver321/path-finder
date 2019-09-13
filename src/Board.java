@@ -16,9 +16,37 @@ public class Board {
 
     private void initialiseBoard() {
         boardState = new Node[sizeX][sizeY];
+
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++) {
+
+               if ( j % 2 == 0) {
+                   boardState[i][j] = new Node();
+                   boardState[i][j].traversable = false;
+               } else {
+                   boardState[i][j] = new Node();
+               }
+            }
+        }
     }
 
     public void setNodeAtLocation(Node node, int x, int y) {
         boardState[x][y] = node;
+    }
+
+    public Node[][] getBoardState() {
+        return boardState;
+    }
+
+    public int getSizeX() {
+        return sizeX;
+    }
+
+    public int getSizeY() {
+        return sizeY;
+    }
+
+    public Node getNode(int x, int y) {
+        return boardState[x][y];
     }
 }
