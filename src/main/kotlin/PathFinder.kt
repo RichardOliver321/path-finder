@@ -1,15 +1,13 @@
-import graph.SearchableGraph
 import graph.GraphBuilder
+import graph.SearchableGraph
 import graph.Vertex
 import path.BreadthFirstSearch
-import path.DijkstraPathFinder
 import path.PathFindingAlgo
 import java.awt.Canvas
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.GraphicsConfiguration
 import javax.swing.JFrame
-import kotlin.math.max
 
 
 fun main() {

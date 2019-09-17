@@ -1,0 +1,4 @@
+package coms
+
+class WebSocketServer {
+}
