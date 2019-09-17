@@ -10,14 +10,24 @@ class DijkstraPathFinder : PathFindingAlgo {
         val unsettledVertexSet: MutableSet<Vertex> = HashSet()
         val settledVertexSet: MutableSet<Vertex> = HashSet()
 
-        val shortestPath: MutableSet<Vertex> = HashSet()
-
         setWeightsToInfinite(graph)
 
         graph.startingVertex.weight = 0
 
         unsettledVertexSet.add(graph.startingVertex)
 
+        doSearch(unsettledVertexSet, graph, settledVertexSet)
+
+        graph.graphVertices = settledVertexSet
+        graph.shortestPath = constructShortestPath(graph.startingVertex, graph.endVertex)
+        return graph
+    }
+
+    private fun doSearch(
+        unsettledVertexSet: MutableSet<Vertex>,
+        graph: SearchableGraph,
+        settledVertexSet: MutableSet<Vertex>
+    ) {
         var currentVertex = getShortestDistantVertex(unsettledVertexSet)
         while (unsettledVertexSet.isNotEmpty() && currentVertex != graph.endVertex) {
             currentVertex = getShortestDistantVertex(unsettledVertexSet)
@@ -34,17 +44,14 @@ class DijkstraPathFinder : PathFindingAlgo {
             currentVertex?.visited = true
             settledVertexSet.add(currentVertex!!)
         }
-
-        graph.graphVertices = settledVertexSet
-        graph.shortestPath = constructShortestPath(graph.startingVertex, graph.endVertex)
-        return graph
     }
 
     private fun constructShortestPath(startingVertex: Vertex, endVertex: Vertex ): MutableSet<Vertex> {
         var currentVertex: Vertex = startingVertex
         val shortestPath: MutableSet<Vertex> = HashSet()
         while(!shortestPath.contains(endVertex)) {
-            currentVertex = currentVertex.edges.filter { edge -> !shortestPath.contains(edge.toVertex) }.sortedBy { edge -> edge.toVertex.weight }.first().toVertex
+            currentVertex =
+                currentVertex.edges.filter { edge -> !shortestPath.contains(edge.toVertex) }.minBy { edge -> edge.toVertex.weight }!!.toVertex
             shortestPath.add(currentVertex)
         }
        return shortestPath
@@ -70,6 +77,6 @@ class DijkstraPathFinder : PathFindingAlgo {
     private fun setWeightsToInfinite(graph: SearchableGraph) {
         graph.graphVertices.forEach { vertex ->
             vertex.weight = Int.MAX_VALUE
-        } //.edges.forEach { edge -> edge.distance = Int.MAX_VALUE } }
+        }
     }
 }

@@ -8,14 +8,15 @@ import java.awt.Color
 import java.awt.Graphics
 import java.awt.GraphicsConfiguration
 import javax.swing.JFrame
+import kotlin.math.max
 
 
 fun main() {
     val frame = JFrame("Searchable Area")
 
-    val startPoint = Vertex(3, 4)
+    val startPoint = vertexAtRandomLocation(10, 10)
     startPoint.isStartPoint = true
-    val endPoint = Vertex(7, 8)
+    val endPoint = vertexAtRandomLocation(10, 10)
     endPoint.isEndPoint = true
 
     var graph: SearchableGraph = GraphBuilder().buildRandomGraph(20, 20, startPoint, endPoint)
@@ -30,6 +31,10 @@ fun main() {
     frame.add(canvas)
     frame.pack()
     frame.isVisible = true
+}
+
+fun vertexAtRandomLocation(maxX: Int, maxY: Int): Vertex {
+    return Vertex((Math.random() * (maxX + 1.0)).toInt(), (Math.random() * (maxY + 1.0)).toInt())
 }
 
 
