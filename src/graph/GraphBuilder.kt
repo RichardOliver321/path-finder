@@ -34,6 +34,10 @@ class GraphBuilder {
         return Vertex(x, y)
     }
 
+    /**
+     * Give each Vertex an edge to each one of its neighbors.
+     * It is an undirected graph therefore edges go both ways
+     */
     private fun setupNeighbourAndEdges(
         currentVertex: Vertex,
         initialGraph: Array<Array<Vertex>>,
@@ -48,6 +52,7 @@ class GraphBuilder {
                 }
             }
         }
+        currentVertex.edges = currentVertex.edges.sortedBy { edge -> edge.toVertex.x }.toMutableSet()
     }
 
     //Make sure we are inside the limits of our array
