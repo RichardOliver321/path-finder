@@ -1,8 +1,8 @@
+package path
+
 import graph.GraphBuilder
 import graph.SearchableGraph
 import graph.Vertex
-import path.BreadthFirstSearch
-import path.PathFindingAlgo
 import java.awt.Canvas
 import java.awt.Color
 import java.awt.Graphics
@@ -20,7 +20,10 @@ fun main() {
 
     var graph: SearchableGraph = GraphBuilder().buildRandomGraph(20, 20, startPoint, endPoint)
 
-    val pathAlgo: PathFindingAlgo = BreadthFirstSearch()//DijkstraPathFinder()
+    val pathAlgo: PathFindingAlgo =
+//        BreadthFirstSearch()
+        DepthFirstSearch()
+//    DijkstraPathFinder()
 
     graph = pathAlgo.findShortestPath(graph)
 
@@ -71,7 +74,7 @@ class PathFinder(config: GraphicsConfiguration?, private val searchableGraph: Se
             return Color.GREEN
 
         return if (vertex.visited)
-            Color(vertex.x* 2, vertex.x* 5, vertex.y* 10)
+            Color.LIGHT_GRAY //(vertex.x* 2, vertex.x* 5, vertex.y* 10)
         else
             Color.MAGENTA
 

@@ -47,11 +47,11 @@ class DijkstraPathFinder : PathFindingAlgo {
     }
 
     private fun constructShortestPath(startingVertex: Vertex, endVertex: Vertex ): MutableSet<Vertex> {
-        var currentVertex: Vertex = startingVertex
+        var currentVertex: Vertex = endVertex
         val shortestPath: MutableSet<Vertex> = HashSet()
-        while(!shortestPath.contains(endVertex)) {
-            currentVertex =
-                currentVertex.edges.filter { edge -> !shortestPath.contains(edge.toVertex) }.minBy { edge -> edge.toVertex.weight }!!.toVertex
+
+        while (currentVertex != startingVertex) {
+            currentVertex = currentVertex.edges.minBy { edge ->  edge.toVertex.weight}?.toVertex!!
             shortestPath.add(currentVertex)
         }
        return shortestPath

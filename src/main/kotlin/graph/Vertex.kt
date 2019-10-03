@@ -6,5 +6,5 @@ class Vertex(val x: Int, val y: Int) {
     var visited: Boolean = false
     var neighbors:  MutableSet<Vertex> = HashSet()
     var edges: MutableSet<Edge> = HashSet()
-    var weight: Int = (Math.random() * 99 + 1).toInt()
+    var weight: Int = 0//(Math.random() * 99 + 1).toInt()
 }
