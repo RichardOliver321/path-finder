@@ -22,8 +22,8 @@ fun main() {
 
     val pathAlgo: PathFindingAlgo =
 //        BreadthFirstSearch()
-        DepthFirstSearch()
-//    DijkstraPathFinder()
+//        DepthFirstSearch()
+    DijkstraPathFinder()
 
     graph = pathAlgo.findShortestPath(graph)
 
