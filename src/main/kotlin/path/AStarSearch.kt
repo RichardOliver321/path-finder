@@ -57,10 +57,9 @@ class Diagonal : AStarSearch() {
     override fun estimateDistanceToGoal() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
 }
 
-class Euclidian : AStarSearch() {
+class Euclidean  : AStarSearch() {
     override fun estimateDistanceToGoal() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
