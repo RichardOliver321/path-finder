@@ -30,9 +30,14 @@ abstract class AStarSearch : PathFindingAlgo {
                 setParent(edge, vertex)
                 calculateCost(edge)
                 estimateDistanceToGoal()
+                calculateTotalCost(edge.toVertex)
             }
         }
 
+    }
+
+    fun calculateTotalCost(vertex: Vertex) {
+        vertex.totalWeight = vertex.weight =
     }
 
     abstract fun estimateDistanceToGoal()
