@@ -9,27 +9,30 @@ import java.awt.Graphics
 import java.awt.GraphicsConfiguration
 import javax.swing.JFrame
 
+const val SIZE = 30
 
 fun main() {
     val frame = JFrame("Searchable Area")
 
-    val startPoint = vertexAtRandomLocation(10, 10)
+    val startPoint = Vertex(10, 11)// vertexAtRandomLocation(SIZE-1, SIZE-1)
     startPoint.isStartPoint = true
-    val endPoint = vertexAtRandomLocation(10, 10)
+    val endPoint = Vertex(27,24)// vertexAtRandomLocation(SIZE-1, SIZE-1)
     endPoint.isEndPoint = true
 
-    var graph: SearchableGraph = GraphBuilder().buildRandomGraph(20, 20, startPoint, endPoint)
+    var graph: SearchableGraph = GraphBuilder().buildRandomGraph(SIZE, SIZE, startPoint, endPoint)
 
     val pathAlgo: PathFindingAlgo =
 //        BreadthFirstSearch()
 //        DepthFirstSearch()
     DijkstraPathFinder()
-
+//        ManhattenAStar()
+//        DiagonalAStar()
+//        EuclideanAStar()
     graph = pathAlgo.findShortestPath(graph)
 
     val canvas = PathFinder(null, graph)
 
-    canvas.setSize(20 * 20, 20 * 20)
+    canvas.setSize(SIZE * SIZE, SIZE * SIZE)
     frame.add(canvas)
     frame.pack()
     frame.isVisible = true
@@ -48,22 +51,22 @@ class PathFinder(config: GraphicsConfiguration?, private val searchableGraph: Se
             g.color = decideOnColor(vertex, searchableGraph.shortestPath)
 
             g.fillRect(
-                vertex.x * 20,
-                (vertex.y * 20)  - 20,
-                20,
-                20
+                vertex.x * SIZE,
+                (vertex.y * SIZE) - SIZE,
+                SIZE,
+                SIZE
             )
             g.color = Color.WHITE
 
-            if(vertex.weight < Int.MAX_VALUE)
-            g.drawString(vertex.weight.toString(), vertex.x * 20, vertex.y * 20)
+            if (vertex.weight < Int.MAX_VALUE)
+                g.drawString(vertex.weight.toString(), vertex.x * SIZE, vertex.y * SIZE)
         }
     }
 
     private fun decideOnColor(vertex: Vertex, shortestPath: MutableSet<Vertex>): Color? {
 
-        if(vertex.weight == Int.MAX_VALUE)
-            return Color.MAGENTA
+        if (vertex.weight == Int.MAX_VALUE)
+            return Color.BLACK
 
         if (vertex.isStartPoint)
             return Color.BLUE
@@ -76,7 +79,7 @@ class PathFinder(config: GraphicsConfiguration?, private val searchableGraph: Se
         return if (vertex.visited)
             Color.LIGHT_GRAY //(vertex.x* 2, vertex.x* 5, vertex.y* 10)
         else
-            Color.MAGENTA
+            Color.BLACK
 
     }
 }

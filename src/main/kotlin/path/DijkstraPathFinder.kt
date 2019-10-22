@@ -23,11 +23,8 @@ class DijkstraPathFinder : PathFindingAlgo {
         return graph
     }
 
-    private fun doSearch(
-        unsettledVertexSet: MutableSet<Vertex>,
-        graph: SearchableGraph,
-        settledVertexSet: MutableSet<Vertex>
-    ) {
+    private fun doSearch(unsettledVertexSet: MutableSet<Vertex>, graph: SearchableGraph, settledVertexSet: MutableSet<Vertex>) {
+
         var currentVertex = getShortestDistantVertex(unsettledVertexSet)
         while (unsettledVertexSet.isNotEmpty() && currentVertex != graph.endVertex) {
             currentVertex = getShortestDistantVertex(unsettledVertexSet)

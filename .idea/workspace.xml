@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="eab10cd0-0993-44b5-a474-7f71e7d5f67e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/graph/GraphBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/graph/GraphBuilder.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/graph/Vertex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/graph/Vertex.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/path/AStarSearch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/path/AStarSearch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/path/DijkstraPathFinder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/path/DijkstraPathFinder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/path/PathFinder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/path/PathFinder.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,6 +111,8 @@
       <workItem from="1568726336288" duration="2509000" />
       <workItem from="1569917699455" duration="9959000" />
       <workItem from="1571251190944" duration="1849000" />
+      <workItem from="1571757303823" duration="930000" />
+      <workItem from="1571759744251" duration="5948000" />
     </task>
     <servers />
   </component>
@@ -119,7 +124,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -134,48 +141,5 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="breakpointCondition">
-      <expression>
-        <expression-string>currentVertex.edges.filter { edge -&gt; !shortestPath.contains(edge.toVertex) }.minBy { edge -&gt; edge.toVertex.weight }!!.toVertex</expression-string>
-        <language-id>kotlin</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>vertex.x == 8 &amp;&amp; vertex.y == 10</expression-string>
-        <language-id>kotlin</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="breakpointLogExpression">
-      <expression>
-        <expression-string>currentVertex.edges +&quot;\n&quot;+ currentVertex.edges.filter { edge -&gt; !shortestPath.contains(edge.toVertex) }</expression-string>
-        <language-id>kotlin</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>currentVertex.edges.filter { edge -&gt; !shortestPath.contains(edge.toVertex) }</expression-string>
-        <language-id>kotlin</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>edge</expression-string>
-        <language-id>kotlin</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>currentVertex.edges.filter { edge -&gt; !shortestPath.contains(edge.toVertex) }.minBy { edge -&gt; edge.toVertex.weight }!!.toVertex</expression-string>
-        <language-id>kotlin</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>vertex</expression-string>
-        <language-id>kotlin</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>

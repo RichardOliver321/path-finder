@@ -1,15 +1,30 @@
 package path
 
-import graph.Edge
 import graph.SearchableGraph
 import graph.Vertex
 import java.util.*
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 abstract class AStarSearch : PathFindingAlgo {
 
     override fun findShortestPath(graph: SearchableGraph): SearchableGraph {
         aStarSearch(graph)
+        constructShortestPath(graph)
         return graph
+    }
+
+    private fun constructShortestPath(graph: SearchableGraph ) {
+        var currentVertex: Vertex = graph.endVertex
+        val shortestPath: MutableSet<Vertex> = HashSet()
+
+        while (currentVertex != graph.startingVertex) {
+            currentVertex = currentVertex.parent!!
+            shortestPath.add(currentVertex)
+        }
+        graph.shortestPath = shortestPath
     }
 
     fun aStarSearch(graph: SearchableGraph) {
@@ -27,46 +42,54 @@ abstract class AStarSearch : PathFindingAlgo {
             openList.remove(vertex);
 
             vertex.edges.forEach { edge ->
-                setParent(edge, vertex)
-                calculateCost(edge)
-                estimateDistanceToGoal()
-                calculateTotalCost(edge.toVertex)
+                val currentVertex = edge.toVertex
+                if (currentVertex.isEndPoint) {
+                    currentVertex.parent = vertex
+                    return
+                }
+                if (!closedList.contains(currentVertex)) {
+                    if (openList.contains(currentVertex)) {
+                        if (calculateTotalCost(currentVertex, graph) < currentVertex.weight)
+                            currentVertex.totalWeight = calculateTotalCost(currentVertex, graph)
+                    } else {
+                        currentVertex.parent = vertex
+                        openList.add(currentVertex)
+                        currentVertex.weight += vertex.weight + edge.distance
+                        currentVertex.totalWeight = calculateTotalCost(currentVertex, graph)
+                    }
+                }
+                currentVertex.visited = true
             }
+
+            closedList.add(vertex)
         }
 
     }
 
-    fun calculateTotalCost(vertex: Vertex) {
-        vertex.totalWeight = vertex.weight =
+    fun calculateTotalCost(vertex: Vertex, graph: SearchableGraph): Int {
+        return vertex.weight + estimateDistanceToGoal(graph.startingVertex, graph.endVertex)
     }
 
-    abstract fun estimateDistanceToGoal()
-
-    private fun setParent(edge: Edge, parent: Vertex) {
-        edge.toVertex.parent = parent
-    }
-
-    private fun calculateCost(edge: Edge) {
-        val vertex = edge.toVertex
-        vertex.weight += vertex.parent!!.weight + edge.distance
-    }
+    abstract fun estimateDistanceToGoal(startingVertex: Vertex, endVertex: Vertex): Int
 }
 
 class ManhattenAStar : AStarSearch() {
-    override fun estimateDistanceToGoal() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun estimateDistanceToGoal(startingVertex: Vertex, endVertex: Vertex): Int {
+        return abs(startingVertex.x - endVertex.x) + abs(startingVertex.y - endVertex.y)
     }
 }
 
-class Diagonal : AStarSearch() {
-    override fun estimateDistanceToGoal() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class DiagonalAStar : AStarSearch() {
+    override fun estimateDistanceToGoal(startingVertex: Vertex, endVertex: Vertex): Int {
+        return max(abs(startingVertex.x - endVertex.x), abs(startingVertex.y - endVertex.y))
     }
 }
 
-class Euclidean  : AStarSearch() {
-    override fun estimateDistanceToGoal() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class EuclideanAStar : AStarSearch() {
+    override fun estimateDistanceToGoal(startingVertex: Vertex, endVertex: Vertex): Int {
+        return sqrt(
+            (startingVertex.x - endVertex.x).toDouble().pow(2)
+                    + (startingVertex.y - endVertex.y).toDouble().pow(2)
+        ).toInt()
     }
-
 }

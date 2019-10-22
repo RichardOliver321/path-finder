@@ -10,5 +10,5 @@ class Vertex(val x: Int, val y: Int) {
     var weight: Int = 0//(Math.random() * 99 + 1).toInt()
 
     //TODO Should make a Vertex Type per algo?
-    var totalWeight: Int = 0
+    var totalWeight: Int = Int.MAX_VALUE
 }

@@ -46,7 +46,7 @@ class GraphBuilder {
     ) {
         for (x in -1..1) {
             for (y in -1..1) {
-                if (doesVertexExist(len + x, wid + y)) {
+                if (doesVertexExist(len + x, wid + y) && currentVertex != initialGraph[len + x][wid + y]) {
                     currentVertex.neighbors.add(initialGraph[len + x][wid + y])
                     currentVertex.edges.add(Edge(initialGraph[len + x][wid + y], (Math.random() * 50 + 1).toInt()))
                 }
