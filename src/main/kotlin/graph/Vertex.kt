@@ -7,7 +7,7 @@ class Vertex(val x: Int, val y: Int) {
     var parent: Vertex? = null
     var neighbors:  MutableSet<Vertex> = HashSet()
     var edges: MutableSet<Edge> = HashSet()
-    var weight: Int = 0//(Math.random() * 99 + 1).toInt()
+    var weight: Int = 5//(Math.random() * 10 + 1).toInt()
 
     //TODO Should make a Vertex Type per algo?
     var totalWeight: Int = Int.MAX_VALUE

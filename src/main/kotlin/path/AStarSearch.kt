@@ -38,10 +38,10 @@ abstract class AStarSearch : PathFindingAlgo {
 
 
         while (openList.isNotEmpty()) {
-            val vertex = openList.first();
+            val vertex = openList.minBy { vertex -> vertex.totalWeight }
             openList.remove(vertex);
 
-            vertex.edges.forEach { edge ->
+            vertex!!.edges.forEach { edge ->
                 val currentVertex = edge.toVertex
                 if (currentVertex.isEndPoint) {
                     currentVertex.parent = vertex
@@ -67,29 +67,29 @@ abstract class AStarSearch : PathFindingAlgo {
     }
 
     fun calculateTotalCost(vertex: Vertex, graph: SearchableGraph): Int {
-        return vertex.weight + estimateDistanceToGoal(graph.startingVertex, graph.endVertex)
+        return vertex.weight + estimateDistanceToGoal(vertex, graph.endVertex)
     }
 
-    abstract fun estimateDistanceToGoal(startingVertex: Vertex, endVertex: Vertex): Int
+    abstract fun estimateDistanceToGoal(currentVertex: Vertex, endVertex: Vertex): Int
 }
 
-class ManhattenAStar : AStarSearch() {
-    override fun estimateDistanceToGoal(startingVertex: Vertex, endVertex: Vertex): Int {
-        return abs(startingVertex.x - endVertex.x) + abs(startingVertex.y - endVertex.y)
+class ManhattanAStar : AStarSearch() {
+    override fun estimateDistanceToGoal(currentVertex: Vertex, endVertex: Vertex): Int {
+        return abs(currentVertex.x - endVertex.x) + abs(currentVertex.y - endVertex.y)
     }
 }
 
 class DiagonalAStar : AStarSearch() {
-    override fun estimateDistanceToGoal(startingVertex: Vertex, endVertex: Vertex): Int {
-        return max(abs(startingVertex.x - endVertex.x), abs(startingVertex.y - endVertex.y))
+    override fun estimateDistanceToGoal(currentVertex: Vertex, endVertex: Vertex): Int {
+        return max(abs(currentVertex.x - endVertex.x), abs(currentVertex.y - endVertex.y))
     }
 }
 
 class EuclideanAStar : AStarSearch() {
-    override fun estimateDistanceToGoal(startingVertex: Vertex, endVertex: Vertex): Int {
+    override fun estimateDistanceToGoal(currentVertex: Vertex, endVertex: Vertex): Int {
         return sqrt(
-            (startingVertex.x - endVertex.x).toDouble().pow(2)
-                    + (startingVertex.y - endVertex.y).toDouble().pow(2)
+            (currentVertex.x - endVertex.x).toDouble().pow(2)
+                    + (currentVertex.y - endVertex.y).toDouble().pow(2)
         ).toInt()
     }
 }

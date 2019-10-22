@@ -3,10 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="eab10cd0-0993-44b5-a474-7f71e7d5f67e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/graph/GraphBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/graph/GraphBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/graph/Vertex.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/graph/Vertex.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/path/AStarSearch.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/path/AStarSearch.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/path/DiagonalAStar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/path/DiagonalAStar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/path/EuclideanAStar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/path/EuclideanAStar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/path/ManhattenAStar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/path/PathFinderKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/path/PathFinderKt.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/graph/GraphBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/graph/GraphBuilder.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/graph/Vertex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/graph/Vertex.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/path/AStarSearch.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/path/AStarSearch.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/path/DijkstraPathFinder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/path/DijkstraPathFinder.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/path/PathFinder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/path/PathFinder.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -112,7 +118,7 @@
       <workItem from="1569917699455" duration="9959000" />
       <workItem from="1571251190944" duration="1849000" />
       <workItem from="1571757303823" duration="930000" />
-      <workItem from="1571759744251" duration="5948000" />
+      <workItem from="1571759744251" duration="7783000" />
     </task>
     <servers />
   </component>

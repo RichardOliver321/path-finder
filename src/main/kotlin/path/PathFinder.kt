@@ -24,10 +24,10 @@ fun main() {
     val pathAlgo: PathFindingAlgo =
 //        BreadthFirstSearch()
 //        DepthFirstSearch()
-    DijkstraPathFinder()
-//        ManhattenAStar()
+//    DijkstraPathFinder()
+//        ManhattanAStar()
 //        DiagonalAStar()
-//        EuclideanAStar()
+        EuclideanAStar()
     graph = pathAlgo.findShortestPath(graph)
 
     val canvas = PathFinder(null, graph)
